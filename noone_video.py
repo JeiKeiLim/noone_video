@@ -2,7 +2,7 @@ from deep_face_detector import DeepFaceDetector
 
 import cv2
 import argparse
-
+import time
 
 # haarcascade file from https://github.com/opencv/opencv/tree/master/data/haarcascades
 default_haar_file = 'model/haarcascade_frontalface_default.xml'
@@ -56,6 +56,9 @@ parser.add_argument('--blur_faces', type=int, default=1,
 parser.add_argument('--reduce_scale', type=float, default=2,
                     help='Reduce scale ratio. ex) 2 = half size of the input. Default : 2')
 
+parser.add_argument('--verbose', type=int, default=0,
+                    help='Show current progress and remaining time')
+
 args = parser.parse_args()
 
 if args.file is None:
@@ -94,8 +97,28 @@ is_fill_color = args.debug_fill_color == 1
 is_text_on = args.debug_text == 1
 is_blur_faces = args.blur_faces == 1
 
+total_frame = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+f_count = 0
+e_time = None
+s_time = None
 while cap.isOpened():
+    f_count += 1
+
+    if args.verbose > 0 and e_time is not None:
+        ittime = (e_time - s_time) * (total_frame-f_count)
+        hour = int(ittime / 60.0 / 60.0)
+        minute = int((ittime / 60.0) - (hour*60))
+        second = int(ittime % 60.0)
+
+        print("Progress %d/%d(%.3f%%), Estimated time : %02d:%02d:%02d" %
+              (f_count, total_frame, (f_count/total_frame), hour, minute, second))
+
+    s_time = time.time()
+
     ret, frame = cap.read()
+
+    if frame is None:
+        break
 
     if args.vertical == 1:
         frame = cv2.rotate(frame, cv2.ROTATE_90_CLOCKWISE)
@@ -123,23 +146,25 @@ while cap.isOpened():
     if args.show == 1:
         cv2.imshow('frame', resized_img)
 
-    key = cv2.waitKey(1)
+        key = cv2.waitKey(1)
 
-    if key > 0:
-        if key == ord('q'):
-            break
-        for i in range(6):
-            if key == ord(str(i+1)):
-                detector.detector_param[i] = not detector.detector_param[i]
+        if key > 0:
+            if key == ord('q'):
+                break
+            for i in range(6):
+                if key == ord(str(i+1)):
+                    detector.detector_param[i] = not detector.detector_param[i]
 
-        if key == ord('r'):
-            is_draw_rect = not is_draw_rect
-        elif key == ord('f'):
-            is_fill_color = not is_fill_color
-        elif key == ord('t'):
-            is_text_on = not is_text_on
-        elif key == ord('b'):
-            is_blur_faces = not is_blur_faces
+            if key == ord('r'):
+                is_draw_rect = not is_draw_rect
+            elif key == ord('f'):
+                is_fill_color = not is_fill_color
+            elif key == ord('t'):
+                is_text_on = not is_text_on
+            elif key == ord('b'):
+                is_blur_faces = not is_blur_faces
+
+    e_time = time.time()
 
 
 cap.release()
