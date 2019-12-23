@@ -102,16 +102,14 @@ f_count = 0
 e_time = None
 s_time = None
 while cap.isOpened():
-    f_count += 1
-
     if args.verbose > 0 and e_time is not None:
         ittime = (e_time - s_time) * (total_frame-f_count)
         hour = int(ittime / 60.0 / 60.0)
         minute = int((ittime / 60.0) - (hour*60))
         second = int(ittime % 60.0)
 
-        print("Progress %d/%d(%.3f%%), Estimated time : %02d:%02d:%02d" %
-              (f_count, total_frame, (f_count/total_frame), hour, minute, second))
+        print("Progress %d/%d(%.2f%%), Estimated time : %02d:%02d:%02d" %
+              (f_count, total_frame, (f_count/total_frame)*100, hour, minute, second))
 
     s_time = time.time()
 
@@ -165,6 +163,7 @@ while cap.isOpened():
                 is_blur_faces = not is_blur_faces
 
     e_time = time.time()
+    f_count += 1
 
 
 cap.release()
