@@ -1,4 +1,4 @@
-# Dee face detection
+# Deep face detection
 Finding faces from DNN and Haar face detection. <br />
 
 <img src="intro01.gif" >
