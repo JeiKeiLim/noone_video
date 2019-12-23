@@ -22,12 +22,12 @@ Finding faces from DNN and Haar face detection. <br />
                           [cam_number]
 
 
-Blurring faces on videos <br />
+## Blurring faces on videos <br />
 
 <img src="intro02.gif">
 
 
-<b>Detailed arguments!<b/>
+## Detailed arguments!
     
     positional arguments:
       cam_number            Index number of the camera
