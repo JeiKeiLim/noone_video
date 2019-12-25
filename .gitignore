@@ -1,2 +1,4 @@
 .idea/
 *.mp4
+deep_face_detector/__pycache__
+.deep_face_detector/__pycache__/

@@ -59,6 +59,9 @@ parser.add_argument('--reduce_scale', type=float, default=2,
 parser.add_argument('--verbose', type=int, default=0,
                     help='Show current progress and remaining time')
 
+parser.add_argument('--blur_level', type=int, default=100,
+                    help='Blurriness of the detected face')
+
 args = parser.parse_args()
 
 if args.file is None:
@@ -121,20 +124,22 @@ while cap.isOpened():
     if args.vertical == 1:
         frame = cv2.rotate(frame, cv2.ROTATE_90_CLOCKWISE)
 
-    dst_frame = frame.copy()
-
     faces, face_maps, face_points = detector.find_face(frame)
 
     if is_draw_rect:
-        detector.draw_square_on_faces(dst_frame)
+        detector.draw_square_on_faces(frame)
 
     if is_blur_faces:
-        detector.blur_faces(dst_frame)
+        detector.blur_faces(frame, blur_level=args.blur_level)
 
-    resized_img = cv2.resize(dst_frame, (int(dst_frame.shape[1] // args.reduce_scale), int(dst_frame.shape[0]//args.reduce_scale)))
+    if args.reduce_scale == 1:
+        resized_img = frame
+    else:
+        resized_img = cv2.resize(frame, (int(frame.shape[1] // args.reduce_scale), int(frame.shape[0] // args.reduce_scale)))
 
     if is_fill_color:
         detector.fill_color_on_faces(resized_img)
+
     if is_text_on:
         detector.draw_classifier_list_text(resized_img)
 

@@ -98,8 +98,8 @@ class DeepFaceDetector:
 
         cv2.addWeighted(result, 0.5, dst_frame, 0.5, 0, dst_frame)
 
-    def blur_faces(self, dst_frame, detector_idx=5):
-        if  len(self.latest_face_points[detector_idx]) == 0:
+    def blur_faces(self, dst_frame, detector_idx=5, blur_level=100):
+        if len(self.latest_face_points[detector_idx]) == 0:
             return
 
         for i in range(len(self.latest_face_points[detector_idx])):
@@ -108,7 +108,7 @@ class DeepFaceDetector:
             right = self.latest_face_points[detector_idx][i][2].astype('int')
             bottom = self.latest_face_points[detector_idx][i][3].astype('int')
 
-            dst_frame[top:bottom, left:right] = cv2.blur(dst_frame[top:bottom, left:right], (31, 31))
+            dst_frame[top:bottom, left:right] = cv2.blur(dst_frame[top:bottom, left:right], (blur_level, blur_level))
 
     def draw_classifier_list_text(self, dst_frame):
         c_names = ['(1) DNN - no crop',
@@ -271,6 +271,9 @@ class DeepFaceDetector:
         return result.astype('uint8')
 
     def detect_rectanglulars(self, face_map, max_v=3):
+        if face_map.sum() == 0:
+            return np.array([])
+
         f_map = face_map.copy()
         f_map[f_map > max_v] = max_v
         f_map[f_map < (max_v/2)] = 0
