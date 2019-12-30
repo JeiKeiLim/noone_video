@@ -1,7 +1,7 @@
 # Deep face detection
 Finding faces from DNN and Haar face detection. <br />
 
-<img src="docs/images/intro01.gif" >
+<img src="https://github.com/JeiKeiLim/mygifcontainer/raw/master/deep_face_detector/intro01.gif" >
 
 
 ## Usage
@@ -24,7 +24,7 @@ Finding faces from DNN and Haar face detection. <br />
 
 ## Blurring faces on videos <br />
 
-<img src="docs/images/intro02.gif">
+<img src="https://github.com/JeiKeiLim/mygifcontainer/raw/master/deep_face_detector/intro02.gif">
 
 
 ## Detailed arguments!

@@ -39,7 +39,6 @@ class DeepFaceDetector:
                       (255, 0, 255),
                       (0, 255, 0),
                       (255, 255, 0))
-        # self.c_colors = np.array(self.c_colors)
 
     def find_face(self, frame, accept_confidence=(0.2, 0.2, 0.2, 0.2)):
         faces = [None] * 5
