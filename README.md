@@ -3,6 +3,21 @@ Finding faces from DNN and Haar face detection. <br />
 
 <img src="https://github.com/JeiKeiLim/mygifcontainer/raw/master/deep_face_detector/intro01.gif" >
 
+## Introduction
+This work was to experiment face detection using OpenCV for the video anonymization.
+
+In this repository, the all included methods were exploited from OpenCV examples including 
+1. Haar detector - Classic Haar cascade detector
+2. DNN with no crop
+3. DNN with crop
+4. DNN with split videos by the ratio
+    - Crop video by 1:1 ratio and slides the crop area to the rest
+5. DNN with split videos by crop size
+    - Split videos by less or more than 5x5 with overlapping area and apply method 4.
+
+I suggest you to take a look at [Video anonymization by FaceDetection-DSFD](https://github.com/JeiKeiLim/FaceDetection-DSFD) for the best performance and [Video anonymization by lightDSFD](https://github.com/JeiKeiLim/lightDSFD) for faster detection but less accurate.  
+
+<img src="https://github.com/JeiKeiLim/mygifcontainer/raw/master/deep_face_detector/compare_01.gif" />
 
 ## Usage
     usage: noone_video.py [-h] [--file FILE] [--out OUT] [--proto_file PROTO_FILE]
