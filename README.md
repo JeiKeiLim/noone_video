@@ -5,8 +5,7 @@ Finding faces from DNN and Haar face detection. <br />
 
 
 ## Usage
-    usage: noone_video.py 
-                          [-h] [--file FILE] [--out OUT] [--proto_file PROTO_FILE]
+    usage: noone_video.py [-h] [--file FILE] [--out OUT] [--proto_file PROTO_FILE]
                           [--model_file MODEL_FILE] [--haar_file HAAR_FILE]
                           [--vertical VERTICAL] [--show SHOW]
                           [--debug_rect DEBUG_RECT]
@@ -19,13 +18,12 @@ Finding faces from DNN and Haar face detection. <br />
                           [--detector_haar DETECTOR_HAAR]
                           [--detector_combined DETECTOR_COMBINED]
                           [--blur_faces BLUR_FACES] [--reduce_scale REDUCE_SCALE]
+                          [--verbose VERBOSE] [--blur_level BLUR_LEVEL]
                           [cam_number]
-
 
 ## Blurring faces on videos <br />
 
 <img src="https://github.com/JeiKeiLim/mygifcontainer/raw/master/deep_face_detector/intro02.gif">
-
 
 ## Detailed arguments!
     
@@ -69,4 +67,7 @@ Finding faces from DNN and Haar face detection. <br />
       --reduce_scale REDUCE_SCALE
                             Reduce scale ratio. ex) 2 = half size of the input.
                             Default : 2
-                            
+      --verbose VERBOSE     Show current progress and remaining time
+      --blur_level BLUR_LEVEL
+                            Blurriness of the detected face
+
