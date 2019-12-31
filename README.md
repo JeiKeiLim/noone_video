@@ -17,7 +17,7 @@ In this repository, the all included methods were exploited from OpenCV examples
 
 I suggest you to take a look at [Video anonymization by FaceDetection-DSFD](https://github.com/JeiKeiLim/FaceDetection-DSFD) for the best performance and [Video anonymization by lightDSFD](https://github.com/JeiKeiLim/lightDSFD) for faster detection but less accurate.  
 
-<img src="https://github.com/JeiKeiLim/mygifcontainer/raw/master/deep_face_detector/compare_01.gif" />
+<img src="https://github.com/JeiKeiLim/mygifcontainer/raw/master/deep_face_detector/compare_02.gif" />
 
 ## Usage
     usage: noone_video.py [-h] [--file FILE] [--out OUT] [--proto_file PROTO_FILE]
